@@ -5,12 +5,12 @@ import detection from '../../assets/detection.png'
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View className='items-center justify-center gap-1 mt-4'>
+    <View className='items-center flex flex-col justify-center gap-1 mt-8'>
       <Image
         source={icon}
         resizeMode='contain'
         tintColor={color}
-        className='w-6 h-6'
+        className='w-8 h-8'
       />
       <Text
         className={`${focused ? 'font-semibold' : 'font-normal'} text-xs`}
@@ -30,7 +30,7 @@ const TabsLayout = () => {
           options={{ headerShown: false }}
           screenOptions={{
             tabBarShowLabel: false,
-            tabBarActiveTintColor: '#0e9730',
+            tabBarActiveTintColor: '#007537',
             tabBarInactiveTintColor: '#CDCDE0',
             tabBarStyle: {
               backgroundColor: '#ffffff',

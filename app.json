@@ -5,10 +5,9 @@
     "scheme": "app-name",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/leafIcon.png",
+    "icon": "./assets/leaf.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/leafIcon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/leafIcon.png",
+        "foregroundImage": "./assets/leaf.png",
         "backgroundColor": "#ffffff"
       }
     },
