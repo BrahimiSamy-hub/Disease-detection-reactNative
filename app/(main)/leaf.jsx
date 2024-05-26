@@ -15,7 +15,7 @@ const Leaf = () => {
   }
 
   return (
-    <View className='p-4 flex-1 bg-white'>
+    <View className='pt-4 px-4 flex-1 bg-white'>
       <Text className='text-3xl text-center mb-4 font-semibold'>
         Disease that can be detected
       </Text>
@@ -24,15 +24,15 @@ const Leaf = () => {
           <View key={index} className='w-full my-2'>
             <TouchableOpacity
               onPress={() => toggleSection(index)}
-              className='bg-gray-200 p-2 rounded flex-row justify-between items-center'
+              className='bg-[#00753735] p-2 rounded flex-row justify-between items-center'
             >
-              <Text className='text-lg'>{disease.name}</Text>
+              <Text className='text-lg font-bold'>{disease.name}</Text>
               <Icon
                 name={
                   activeSections.includes(index) ? 'expand-less' : 'expand-more'
                 }
                 size={24}
-                color='green'
+                color='#007537'
               />
             </TouchableOpacity>
             <Collapsible

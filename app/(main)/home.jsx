@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import {
   Text,
@@ -33,7 +33,7 @@ const Home = () => {
       }
 
       let result = await ImagePicker.launchCameraAsync({
-        allowsEditing: false,
+        allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
       })
@@ -53,7 +53,7 @@ const Home = () => {
 
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: false,
+        allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
       })
@@ -89,7 +89,7 @@ const Home = () => {
 
   return (
     <View className='p-4 bg-white flex-1'>
-      <Text className='text-3xl text-center mb-4 font-semibold'>
+      <Text className='text-3xl mb-4 font-semibold'>
         Leaf Disease Detection
       </Text>
       <View className='flex-1 justify-center items-center'>
@@ -128,7 +128,7 @@ const Home = () => {
           )}
         </TouchableOpacity>
         <Text className='mt-4 font-bold color-red-500'>
-          Note: for better results try centring ur leaf
+          Note: for better results center ur leaf
         </Text>
       </View>
       <ActionSheet
