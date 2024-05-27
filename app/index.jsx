@@ -19,18 +19,18 @@ export default function App() {
   }, [router])
 
   return (
-    <View className='flex-1 items-center justify-center p-5'>
+    <View className='flex-1 items-center justify-center '>
       <Image
         source={require('../assets/animation.png')}
-        className='w-48 h-48 mb-5'
+        className='w-48 h-48 border-2 rounded border-[#007537]'
       />
-      <Text className='text-xl text-[#007537] mb-2'>{loading}%</Text>
-      <View className='w-4/5 h-2 border border-black rounded overflow-hidden mt-2'>
+      {/* <Text className='text-xl text-[#007537] mb-2'>{loading}%</Text> */}
+      {/* <View className='w-4/5 h-2 border border-black rounded overflow-hidden mt-2'>
         <View
           className='h-full bg-[#007537]'
           style={{ width: `${loading}%` }}
         />
-      </View>
+      </View> */}
     </View>
   )
 }

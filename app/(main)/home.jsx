@@ -15,9 +15,7 @@ import * as ImagePicker from 'expo-image-picker'
 
 const Home = () => {
   const actionSheetRef = useRef()
-  const [imageUri, setImageUri] = useState(null)
-  const scanAnim = useRef(new Animated.Value(0)).current
-  const windowHeight = Dimensions.get('window').height
+  const [image, setImage] = useState(null)
 
   const showActionSheet = () => {
     actionSheetRef.current.show()
@@ -25,12 +23,12 @@ const Home = () => {
 
   const handleActionPress = async (index) => {
     if (index === 0) {
-      const permissionResult = await ImagePicker.requestCameraPermissionsAsync()
+      // const permissionResult = await ImagePicker.requestCameraPermissionsAsync()
 
-      if (permissionResult.granted === false) {
-        Alert.alert("You've refused to allow this app to access your camera!")
-        return
-      }
+      // if (permissionResult.granted === false) {
+      //   Alert.alert("You've refused to allow this app to access your camera!")
+      //   return
+      // }
 
       let result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
@@ -39,17 +37,17 @@ const Home = () => {
       })
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
-        setImageUri(result.assets[0].uri)
+        setImage(result.assets[0].uri)
         startScanAnimation()
       }
     } else if (index === 1) {
-      const permissionResult =
-        await ImagePicker.requestMediaLibraryPermissionsAsync()
+      // const permissionResult =
+      //   await ImagePicker.requestMediaLibraryPermissionsAsync()
 
-      if (permissionResult.granted === false) {
-        Alert.alert("You've refused to allow this app to access your photos!")
-        return
-      }
+      // if (permissionResult.granted === false) {
+      //   Alert.alert("You've refused to allow this app to access your photos!")
+      //   return
+      // }
 
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -59,11 +57,15 @@ const Home = () => {
       })
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
-        setImageUri(result.assets[0].uri)
+        setImage(result.assets[0].uri)
         startScanAnimation()
       }
     }
   }
+
+  //animation
+  const scanAnim = useRef(new Animated.Value(0)).current
+  const windowHeight = Dimensions.get('window').height
 
   const startScanAnimation = () => {
     Animated.loop(
@@ -97,7 +99,7 @@ const Home = () => {
           className='w-64 h-64 border-2 border-[#007537] justify-center rounded'
           onPress={showActionSheet}
         >
-          {!imageUri && (
+          {!image && (
             <>
               <Image
                 source={leaf}
@@ -112,10 +114,10 @@ const Home = () => {
               </Text>
             </>
           )}
-          {imageUri && (
+          {image && (
             <View className=''>
               <Image
-                source={{ uri: imageUri }}
+                source={{ uri: image }}
                 style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
               />
               <Animated.View
