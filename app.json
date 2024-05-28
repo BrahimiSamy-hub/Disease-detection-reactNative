@@ -5,7 +5,7 @@
     "scheme": "app-name",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/leaf.png",
+    "icon": "./assets/mainLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "resizeMode": "contain",
@@ -16,13 +16,28 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/leaf.png",
+        "foregroundImage": "./assets/mainLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.brahimisam.PFE"
     },
     "web": {
-      "favicon": "./assets/leafIcon.png"
+      "favicon": "./assets/mainLogoIcon.png"
     },
-    "plugins": ["expo-router"]
+    "plugins": ["expo-router"],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e9a58239-d4e2-4b6e-a432-44832489ede5"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e9a58239-d4e2-4b6e-a432-44832489ede5"
+    }
   }
 }

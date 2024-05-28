@@ -15,16 +15,18 @@ export default function App() {
         clearInterval(interval)
         router.push('/home')
       }
-    }, 10)
+    }, 15)
   }, [router])
 
   return (
     <View className='flex-1 items-center justify-center '>
       <Image
-        source={require('../assets/animation.png')}
-        className='w-48 h-48 border-2 rounded border-[#007537]'
+        source={require('../assets/mainLogo.png')}
+        className='object-contain'
       />
-      {/* <Text className='text-xl text-[#007537] mb-2'>{loading}%</Text> */}
+      <Text className='text-3xl my-2 '>Crops disease detection</Text>
+      <Text>University Batna-2</Text>
+      {/* <Text className=''>{loading}%</Text> */}
       {/* <View className='w-4/5 h-2 border border-black rounded overflow-hidden mt-2'>
         <View
           className='h-full bg-[#007537]'
