@@ -15,14 +15,15 @@ export default function App() {
         clearInterval(interval)
         router.push('/home')
       }
-    }, 15)
+    }, 250)
   }, [router])
 
   return (
     <View className='flex-1 items-center justify-center '>
       <Image
         source={require('../assets/mainLogo.png')}
-        className='object-contain'
+        className=' w-64 h-64'
+        resizeMode='contain'
       />
       <Text className='text-3xl my-2 '>Crops disease detection</Text>
       <Text>University Batna-2</Text>

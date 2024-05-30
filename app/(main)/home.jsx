@@ -12,10 +12,12 @@ import {
 import leaf from '../../assets/leaf.png'
 import ActionSheet from 'react-native-actionsheet'
 import * as ImagePicker from 'expo-image-picker'
+import ImageModal from '../../components/ImageModal'
 
 const Home = () => {
   const actionSheetRef = useRef()
   const [image, setImage] = useState(null)
+  const [modalVisible, setModalVisible] = useState(false)
 
   const showActionSheet = () => {
     actionSheetRef.current.show()
@@ -23,12 +25,12 @@ const Home = () => {
 
   const handleActionPress = async (index) => {
     if (index === 0) {
-      // const permissionResult = await ImagePicker.requestCameraPermissionsAsync()
+      const permissionResult = await ImagePicker.requestCameraPermissionsAsync()
 
-      // if (permissionResult.granted === false) {
-      //   Alert.alert("You've refused to allow this app to access your camera!")
-      //   return
-      // }
+      if (permissionResult.granted === false) {
+        Alert.alert("You've refused to allow this app to access your camera!")
+        return
+      }
 
       let result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
@@ -39,15 +41,16 @@ const Home = () => {
       if (!result.canceled && result.assets && result.assets.length > 0) {
         setImage(result.assets[0].uri)
         startScanAnimation()
+        setModalVisible(true)
       }
     } else if (index === 1) {
-      // const permissionResult =
-      //   await ImagePicker.requestMediaLibraryPermissionsAsync()
+      const permissionResult =
+        await ImagePicker.requestMediaLibraryPermissionsAsync()
 
-      // if (permissionResult.granted === false) {
-      //   Alert.alert("You've refused to allow this app to access your photos!")
-      //   return
-      // }
+      if (permissionResult.granted === false) {
+        Alert.alert("You've refused to allow this app to access your photos!")
+        return
+      }
 
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -59,6 +62,7 @@ const Home = () => {
       if (!result.canceled && result.assets && result.assets.length > 0) {
         setImage(result.assets[0].uri)
         startScanAnimation()
+        setModalVisible(true)
       }
     }
   }
@@ -90,57 +94,65 @@ const Home = () => {
   })
 
   return (
-    <View className='p-4 bg-white flex-1'>
-      <Text className='text-3xl mb-4 font-semibold'>
-        Leaf Disease Detection
-      </Text>
-      <View className='flex-1 justify-center items-center'>
-        <TouchableOpacity
-          className='w-64 h-64 border-2 border-[#007537] justify-center rounded'
-          onPress={showActionSheet}
-        >
-          {!image && (
-            <>
-              <Image
-                source={leaf}
-                className='w-20 h-20'
-                style={{
-                  width: '100%',
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text className='text-center p-2 font-semibold'>
-                Tap to upload an image or use the camera
-              </Text>
-            </>
-          )}
-          {image && (
-            <View className=''>
-              <Image
-                source={{ uri: image }}
-                style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
-              />
-              <Animated.View
-                className='absolute top-0 left-0 right-0 h-full bg-white opacity-50'
-                style={{
-                  transform: [{ translateY }],
-                }}
-              />
-            </View>
-          )}
-        </TouchableOpacity>
-        <Text className='mt-4 font-bold color-red-500'>
-          Note: for better results center ur leaf
+    <>
+      <View className='p-4 bg-white flex-1'>
+        <Text className='text-3xl mb-4 font-semibold'>
+          Leaf Disease Detection
         </Text>
+        <View className='flex-1 justify-center items-center'>
+          <TouchableOpacity
+            className='w-64 h-64 border-2 border-[#007537] justify-center rounded'
+            onPress={showActionSheet}
+          >
+            {!image && (
+              <>
+                <Image
+                  source={leaf}
+                  className='w-20 h-20'
+                  style={{
+                    width: '100%',
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text className='text-center p-2 font-semibold'>
+                  Tap to upload an image or use the camera
+                </Text>
+              </>
+            )}
+            {image && (
+              <View className=''>
+                <Image
+                  source={{ uri: image }}
+                  style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
+                />
+                <Animated.View
+                  className='absolute top-0 left-0 right-0 h-full bg-white opacity-50'
+                  style={{
+                    transform: [{ translateY }],
+                  }}
+                />
+              </View>
+            )}
+          </TouchableOpacity>
+          <Text className='mt-4 font-bold color-red-500'>
+            Note: for better results center ur leaf
+          </Text>
+        </View>
+        <ActionSheet
+          ref={actionSheetRef}
+          options={['Camera', 'Gallery', 'Cancel']}
+          cancelButtonIndex={2}
+          onPress={handleActionPress}
+        />
+
+        <StatusBar style='auto' />
       </View>
-      <ActionSheet
-        ref={actionSheetRef}
-        options={['Camera', 'Gallery', 'Cancel']}
-        cancelButtonIndex={2}
-        onPress={handleActionPress}
+      <ImageModal
+        visible={modalVisible}
+        imageUri={image}
+        onClose={() => setModalVisible(false)}
       />
-      <StatusBar style='auto' />
-    </View>
+    </>
   )
 }
 
