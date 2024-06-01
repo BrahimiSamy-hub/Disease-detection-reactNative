@@ -15,7 +15,7 @@ const Leaf = () => {
   }
 
   return (
-    <View className='pt-4 px-4 flex-1 bg-white'>
+    <View className='pt-4 px-4 flex-1 bg-[#00753705]'>
       <Text className='text-3xl text-center mb-4 font-semibold'>
         Disease that can be detected
       </Text>
@@ -44,13 +44,13 @@ const Leaf = () => {
                   <Text className='text-base font-semibold'>
                     {classe.name}:
                   </Text>
-                  <Text className='text-sm text-gray-600'>
+                  <Text className='text-base text-gray-600'>
                     {classe.description}
                   </Text>
                   <Image
-                    source={{ uri: classe.image }}
-                    className=' h-36 w-full mt-2 '
-                    resizeMode='contain'
+                    source={classe.image}
+                    className='h-36 w-full mt-2 '
+                    resizeMode='fill'
                   />
                 </View>
               ))}

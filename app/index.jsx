@@ -15,18 +15,20 @@ export default function App() {
         clearInterval(interval)
         router.push('/home')
       }
-    }, 250)
+    }, 10)
   }, [router])
 
   return (
-    <View className='flex-1 items-center justify-center '>
+    <View className='flex-1 items-center justify-center bg-[#00753715] '>
       <Image
         source={require('../assets/mainLogo.png')}
         className=' w-64 h-64'
         resizeMode='contain'
       />
-      <Text className='text-3xl my-2 '>Crops disease detection</Text>
-      <Text>University Batna-2</Text>
+      <Text className='text-3xl font-extrabold my-1'>
+        Crops disease detection
+      </Text>
+      <Text className='mt-[-10px] text-xl'>University of BATNA 2</Text>
       {/* <Text className=''>{loading}%</Text> */}
       {/* <View className='w-4/5 h-2 border border-black rounded overflow-hidden mt-2'>
         <View
