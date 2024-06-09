@@ -8,8 +8,6 @@ const ImageModal = ({ visible, imageUri, onClose, result }) => {
     setModalVisible(visible)
   }, [visible])
 
-  console.log('result', result)
-
   const handleClose = () => {
     setModalVisible(false)
     if (onClose) onClose()

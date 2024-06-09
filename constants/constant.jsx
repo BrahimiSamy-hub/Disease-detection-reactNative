@@ -179,26 +179,26 @@ export const crops = [
   {
     id: 'corn',
     name: 'Corn',
-    icon: require('../assets/modelChoice/corn.jpg'),
+    icon: require('../assets/modelChoice/corn.png'),
   },
   {
     id: 'cucumber',
     name: 'Cucumber',
-    icon: require('../assets/modelChoice/cucumber.jpg'),
+    icon: require('../assets/modelChoice/cucumber.png'),
   },
   {
     id: 'tomato',
     name: 'Tomato',
-    icon: require('../assets/modelChoice/tomato.jpg'),
+    icon: require('../assets/modelChoice/tomato.png'),
   },
   {
     id: 'apple',
     name: 'Apple',
-    icon: require('../assets/modelChoice/apple.jpg'),
+    icon: require('../assets/modelChoice/apple.png'),
   },
   {
     id: 'wheat',
     name: 'Wheat',
-    icon: require('../assets/modelChoice/wheat.jpg'),
+    icon: require('../assets/modelChoice/wheat.png'),
   },
 ]
